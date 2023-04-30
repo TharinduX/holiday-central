@@ -34,7 +34,7 @@ const FlightCheckout = () => {
                 <span className='text-borderColor'> Payment pending</span>
               </div>
             </div>
-            <div className='map-wrapper'>
+            <div className='map-wrapper h-[300px] '>
               <Map />
             </div>
             <div className='flex justify-around divide-x'>
