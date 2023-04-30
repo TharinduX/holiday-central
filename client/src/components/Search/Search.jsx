@@ -103,7 +103,12 @@ const Search = () => {
           </div>
           <div className='search-item ml-2 flex gap-2 items-center text-gray-400  '>
             <MdPerson2 className='search-icon' />
-            <NumericInput min={1} max={9} className='w-20 h-10 ' />
+            <NumericInput
+              defaultValue={1}
+              min={1}
+              max={9}
+              className='w-20 h-10 '
+            />
           </div>
         </div>
         <div className='search-item flex items-stretch text-gray-500 '>

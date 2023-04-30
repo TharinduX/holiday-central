@@ -34,3 +34,10 @@ a.active.nav-active {
 .react-numeric-input input {
   border: 0 !important;
 }
+
+.back-button {
+  color: white;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
