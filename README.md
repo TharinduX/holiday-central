@@ -8,7 +8,7 @@ HolidayCentral is a travel company that provides flight ticket booking, hotel bo
 
 The web-based solution supports the following user groups:
 
-* Travel agents: Search and book products and obtain payments.
+- Travel agents: Search and book products and obtain payments.
 - Back-office staff: Ensure searchable products are available in the system.
 - Admin: Add new travel agents, reset passwords, etc.
 
