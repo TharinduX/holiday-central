@@ -1,5 +1,6 @@
 import React from 'react';
 import { MdOutlineArrowBack, MdArrowDropDown } from 'react-icons/md';
+import Map from '../../components/GoogleMap/Map';
 
 const FlightCheckout = () => {
   return (
@@ -13,7 +14,7 @@ const FlightCheckout = () => {
           <div className='flex avatar-wrapper items-center gap-4'>
             <div className='user-name text-white'>Tharindu</div>
             <img
-              class='w-10 h-10 rounded-full'
+              className='w-10 h-10 rounded-full'
               src='https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460__340.png'
               alt='Rounded avatar'
             ></img>
@@ -21,7 +22,7 @@ const FlightCheckout = () => {
           </div>
         </div>
       </nav>
-      <div className='checkout-body max-w-[1200px] w-full m-auto mt-5'>
+      <div className='checkout-body max-w-[1200px] w-full m-auto my-5'>
         <div className='grid grid-cols-3 gap-2'>
           <div className='col-span-2 bg-white rounded-lg p-8 shadow-md'>
             <div className='card-wrapper flex justify-between'>
@@ -33,107 +34,111 @@ const FlightCheckout = () => {
                 <span className='text-borderColor'> Payment pending</span>
               </div>
             </div>
-
-            <div className='meal-preference-wrapper mb-5'>
-              <div className=' mt-5 text-lg font-bold text-secondary'>
-                Meal Preference
+            <div className='map-wrapper'>
+              <Map />
+            </div>
+            <div className='flex justify-around divide-x'>
+              <div className='meal-preference-wrapper mb-5'>
+                <div className=' mt-5 text-lg font-bold text-secondary'>
+                  Meal Preference
+                </div>
+                <div className='flex gap-5 mt-5'>
+                  <div className='flex gap-3'>
+                    <input
+                      type='radio'
+                      id='nonveg'
+                      name='meal-radio'
+                      className='peer hidden'
+                    />
+                    <label
+                      htmlFor='nonveg'
+                      className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
+                    >
+                      Non-Veg
+                    </label>
+                  </div>
+                  <div className='flex gap-3'>
+                    <input
+                      type='radio'
+                      id='veg'
+                      name='meal-radio'
+                      className='peer hidden'
+                    />
+                    <label
+                      htmlFor='veg'
+                      className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
+                    >
+                      Vegetarian
+                    </label>
+                  </div>
+                  <div className='flex gap-3'>
+                    <input
+                      type='radio'
+                      id='seafood'
+                      name='meal-radio'
+                      className='peer hidden'
+                    />
+                    <label
+                      htmlFor='seafood'
+                      className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
+                    >
+                      Seafood
+                    </label>
+                  </div>
+                </div>
               </div>
-              <div className='flex gap-5 mt-5'>
-                <div className='flex gap-3'>
-                  <input
-                    type='radio'
-                    id='nonveg'
-                    name='meal-radio'
-                    className='peer hidden'
-                  />
-                  <label
-                    for='nonveg'
-                    className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
-                  >
-                    Non-Veg
-                  </label>
+              <div className='seat-preference-wrapper pl-10'>
+                <div className='text-secondary mt-5 text-lg font-bold'>
+                  Select a seat
                 </div>
-                <div className='flex gap-3'>
-                  <input
-                    type='radio'
-                    id='veg'
-                    name='meal-radio'
-                    className='peer hidden'
-                  />
-                  <label
-                    for='veg'
-                    className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
-                  >
-                    Vegetarian
-                  </label>
-                </div>
-                <div className='flex gap-3'>
-                  <input
-                    type='radio'
-                    id='seafood'
-                    name='meal-radio'
-                    className='peer hidden'
-                  />
-                  <label
-                    for='seafood'
-                    className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
-                  >
-                    Seafood
-                  </label>
+                <div className='flex gap-5 mt-5 mb-10'>
+                  <div className='flex gap-3'>
+                    <input
+                      type='radio'
+                      id='window'
+                      name='seat-radio'
+                      className='peer hidden'
+                    />
+                    <label
+                      htmlFor='window'
+                      className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
+                    >
+                      Basic Window
+                    </label>
+                  </div>
+                  <div className='flex gap-3'>
+                    <input
+                      type='radio'
+                      id='isle'
+                      name='seat-radio'
+                      className='peer hidden'
+                    />
+                    <label
+                      htmlFor='isle'
+                      className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
+                    >
+                      Isle
+                    </label>
+                  </div>
+                  <div className='flex gap-3'>
+                    <input
+                      type='radio'
+                      id='middle'
+                      name='seat-radio'
+                      className='peer hidden'
+                    />
+                    <label
+                      htmlFor='middle'
+                      className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
+                    >
+                      Middle Seat
+                    </label>
+                  </div>
                 </div>
               </div>
             </div>
-            <hr />
-            <div className='seat-preference-wrapper'>
-              <div className='text-secondary mt-5 text-lg font-bold'>
-                Select a seat
-              </div>
-              <div className='flex gap-5 mt-5 mb-10'>
-                <div className='flex gap-3'>
-                  <input
-                    type='radio'
-                    id='window'
-                    name='seat-radio'
-                    className='peer hidden'
-                  />
-                  <label
-                    for='window'
-                    className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
-                  >
-                    Basic Window
-                  </label>
-                </div>
-                <div className='flex gap-3'>
-                  <input
-                    type='radio'
-                    id='isle'
-                    name='seat-radio'
-                    className='peer hidden'
-                  />
-                  <label
-                    for='isle'
-                    className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
-                  >
-                    Isle
-                  </label>
-                </div>
-                <div className='flex gap-3'>
-                  <input
-                    type='radio'
-                    id='middle'
-                    name='seat-radio'
-                    className='peer hidden'
-                  />
-                  <label
-                    for='middle'
-                    className='cursor-pointer bg-white shadow-md  peer-checked:bg-secondary select-none p-2 peer-checked:text-white rounded-md'
-                  >
-                    Middle Seat
-                  </label>
-                </div>
-              </div>
-            </div>
-            <div className='text-secondary text-3xl font-bold mb-5'>
+            <hr className='mb-4' />
+            <div className='text-secondary text-3xl font-bold mb-5 '>
               Passenger Details
             </div>
             <div className='form-wrapper'>
@@ -163,8 +168,41 @@ const FlightCheckout = () => {
               </div>
             </div>
           </div>
-          <div className='checkout-button bg-white rounded-md p-8 shadow-md'>
-            <button>Checkout</button>
+          <div className='checkout-info bg-white rounded-md p-8 shadow-md h-[400px] flex flex-col justify-between w-full'>
+            <div className='order-info-wrapper'>
+              <div className='text-md gap-3 justify-end items-center flex w-full'>
+                <img
+                  src='https://images.kiwi.com/airlines/64/UL.png'
+                  alt=''
+                  className='w-10 h-10 '
+                />
+                Sri Lankan Airlines
+              </div>
+              <hr className='mt-3 mb-3' />
+              <div className='flex p-4'>
+                <div className='flex flex-col justify-center items-center text-gray-600'>
+                  <div className='font-bold'>18:00</div>
+                  <div className='text-sm'>CMB</div>
+                </div>
+                <div className='flex flex-col items-center justify-center text-gray-600 w-full'>
+                  <hr class='w-full h-1 bg-gray-200 border-0 rounded dark:bg-gray-500' />
+                  <div className='text-sm'>Direct</div>
+                </div>
+                <div className='flex flex-col justify-center items-center text-gray-600'>
+                  <div className='font-bold'>18:00</div>
+                  <div className='text-sm'>CMB</div>
+                </div>
+              </div>
+            </div>
+            <div className='w-full'>
+              <div className='price text-md '>x2 Passengers</div>
+              <div className='price text-md '>x2 Meal</div>
+              <div className='price text-3xl font-bold'>LKR 58000</div>
+              <div className='price text-xs '>Tax included</div>
+              <button className='bg-secondary text-white px-6 py-3 rounded-lg w-full mt-4'>
+                Checkout
+              </button>
+            </div>
           </div>
         </div>
       </div>
