@@ -1,26 +1,35 @@
-const express = require('express');
-const connect = require('./database');
-const cors = require('cors');
-const bodyParser = require('body-parser');
-const agentRoutes = require('./routes/agentRoutes');
-const airlineRoutes = require('./routes/airlineRoutes');
-const flightRoutes = require('./routes/flightRoutes');
-require('dotenv').config();
+import express from 'express';
+import connect from './database.js';
+import cors from 'cors';
+import authRoutes from './routes/auth.js';
+import airlineRoutes from './routes/airlines.js';
+import flightRoutes from './routes/flights.js';
 
 const app = express();
 const PORT = 5000;
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 
 //Agent Routes
-app.use('/api/agents', agentRoutes);
+app.use('/api/auth', authRoutes);
 
 //Airline Routes
 app.use('/api/airlines', airlineRoutes);
 
 //Flight Routes
 app.use('/api/flights', flightRoutes);
+
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || 'Something went wrong!';
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
+});
 
 const start = async () => {
   try {

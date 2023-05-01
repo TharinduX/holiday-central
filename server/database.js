@@ -1,5 +1,7 @@
-const mongoose = require('mongoose');
-require('dotenv').config();
+import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 function connect() {
   mongoose
@@ -11,4 +13,4 @@ function connect() {
     });
 }
 
-module.exports = connect;
+export default connect;

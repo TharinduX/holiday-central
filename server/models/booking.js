@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const bookingSchema = new mongoose.Schema({
   agent_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Agent' },
@@ -7,4 +7,4 @@ const bookingSchema = new mongoose.Schema({
   flight_booking_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Flight' },
 });
 
-module.exports = mongoose.model('Booking', bookingSchema);
+export default mongoose.model('Booking', bookingSchema);

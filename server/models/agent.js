@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const agentSchema = new mongoose.Schema(
   {
@@ -11,4 +11,4 @@ const agentSchema = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 );
 
-module.exports = mongoose.model('Agent', agentSchema);
+export default mongoose.model('Agent', agentSchema);

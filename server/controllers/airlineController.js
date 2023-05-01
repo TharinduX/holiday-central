@@ -1,6 +1,6 @@
-const Airline = require('../models/airline');
+import Airline from '../models/Airline.js';
 
-const getAirline = async (req, res) => {
+export const getAirline = async (req, res) => {
   try {
     const airline = await Airline.find();
     res.status(200).json(airline);
@@ -9,5 +9,3 @@ const getAirline = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
-
-module.exports = { getAirline };

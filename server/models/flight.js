@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const airlineSchema = require('./airline').schema;
+import mongoose from 'mongoose';
+import airlineSchema from './Airline.js';
 
 const flightSchema = new mongoose.Schema(
   {
@@ -13,11 +13,10 @@ const flightSchema = new mongoose.Schema(
     transit_time: { type: Number },
     isReturn: { type: Boolean, required: true },
     cabin_class: { type: String, required: true },
-    airline: airlineSchema,
+    airline: airlineSchema.schema,
     price: { type: Number, required: true },
     duration: { type: Number, required: true },
   },
   { timestamps: true, versionKey: false }
 );
-
-module.exports = mongoose.model('Flight', flightSchema);
+export default mongoose.model('Flight', flightSchema);

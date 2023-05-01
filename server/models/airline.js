@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const airlineSchema = new mongoose.Schema(
   {
@@ -8,4 +8,4 @@ const airlineSchema = new mongoose.Schema(
   { _id: false }
 );
 
-module.exports = mongoose.model('Airline', airlineSchema);
+export default mongoose.model('Airline', airlineSchema);
