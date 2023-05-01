@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const airlineSchema = require('./airline').schema;
 
 const flightSchema = new mongoose.Schema(
   {
@@ -12,7 +13,7 @@ const flightSchema = new mongoose.Schema(
     transit_time: { type: Number },
     isReturn: { type: Boolean, required: true },
     cabin_class: { type: String, required: true },
-    airline_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Airline' },
+    airline: airlineSchema,
     price: { type: Number, required: true },
     duration: { type: Number, required: true },
   },

@@ -10,4 +10,6 @@ const addFlight = async (req, res) => {
   }
 };
 
+const getFlights = async (req, res) => {};
+
 module.exports = { addFlight };
