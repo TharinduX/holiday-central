@@ -1,6 +1,10 @@
 import Agent from '../models/Agent.js';
 import bcrypt from 'bcrypt';
 import { createError } from './../utils/error.js';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 export const agentRegister = async (req, res, next) => {
   try {
@@ -30,7 +34,13 @@ export const agentLogin = async (req, res, next) => {
     );
     if (!isPasswordCorrect)
       return next(createError(400, 'Username or password is incorrect'));
-    res.status(200).json(agent);
+    const token = jwt.sign({ id: agent._id }, process.env.JWT_SECRET);
+    const { password, ...others } = agent._doc;
+
+    res
+      .cookie('access_token', token, { httpOnly: true })
+      .status(200)
+      .json({ ...others });
   } catch (err) {
     next(err);
   }

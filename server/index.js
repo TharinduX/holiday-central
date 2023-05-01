@@ -4,10 +4,12 @@ import cors from 'cors';
 import authRoutes from './routes/auth.js';
 import airlineRoutes from './routes/airlines.js';
 import flightRoutes from './routes/flights.js';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const PORT = 5000;
 
+app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
 
