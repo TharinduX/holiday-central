@@ -1,8 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { MdOutlineArrowBack, MdArrowDropDown } from 'react-icons/md';
 import Map from '../../components/GoogleMap/Map';
+import { SearchContext } from '../../context/SearchContext';
 
 const FlightCheckout = () => {
+  const { departure_date } = useContext(SearchContext);
+
+  console.log(departure_date);
+
   return (
     <div className='checkout-wrapper'>
       <nav className='header bg-secondary px-12 pt-8 pb-8'>
@@ -185,7 +190,7 @@ const FlightCheckout = () => {
                   <div className='text-sm'>CMB</div>
                 </div>
                 <div className='flex flex-col items-center justify-center text-gray-600 w-full'>
-                  <hr class='w-full h-1 bg-gray-200 border-0 rounded dark:bg-gray-500' />
+                  <hr className='w-full h-1 bg-gray-200 border-0 rounded dark:bg-gray-500' />
                   <div className='text-sm'>Direct</div>
                 </div>
                 <div className='flex flex-col justify-center items-center text-gray-600'>

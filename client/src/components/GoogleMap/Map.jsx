@@ -13,8 +13,8 @@ const containerStyle = {
 };
 
 const loactions = [
-  { lat: 6.927079, lng: 79.861244 },
-  { lat: 19.07609, lng: 72.877426 },
+  { id: 1, lat: 6.927079, lng: 79.861244 },
+  { id: 2, lat: 19.07609, lng: 72.877426 },
 ];
 
 const options = {

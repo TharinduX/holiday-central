@@ -1,7 +1,11 @@
 import express from 'express';
-import { addFlight } from '../controllers/flightController.js';
 import { verifyToken } from '../utils/verifyToken.js';
-import { getFlights } from '../controllers/flightController.js';
+import {
+  addFlight,
+  getFlights,
+  getFlight,
+  searchFlights,
+} from '../controllers/flightController.js';
 const router = express.Router();
 
 // router.get('/checkauthentication', verifyToken, (req, res, next) => {
@@ -10,5 +14,7 @@ const router = express.Router();
 
 router.post('/', addFlight);
 router.get('/', getFlights);
+router.get('/search', searchFlights);
+router.get('/find/:id', getFlight);
 
 export default router;

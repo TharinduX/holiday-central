@@ -1,8 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
 import useFetch from '../../hooks/useFetch';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
 const FilterSiderbar = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 1500);
+  });
+
   const [airlines, setAirlines] = useState([]);
 
   useEffect(() => {
@@ -23,90 +33,96 @@ const FilterSiderbar = () => {
   ];
 
   return (
-    <div>
-      <div className='text-lg font-bold mb-3'>Filters</div>
-      <hr />
-      <div>
-        <div className='mt-4 font-semibold'>Airlines</div>
-        <Select
-          placeholder='Select airline'
-          className='mt-2'
-          styles={{
-            control: (baseStyles, state) => ({
-              ...baseStyles,
-              border: 0,
-              boxShadow: 'none',
-              borderColor: 'none',
-            }),
-          }}
-          options={options}
-        ></Select>
-        <hr />
-        <div className='mt-4 font-semibold'>Price</div>
-        <Select
-          className='mt-2'
-          isSearchable={false}
-          styles={{
-            control: (baseStyles, state) => ({
-              ...baseStyles,
-              border: 0,
-              boxShadow: 'none',
-              borderColor: 'none',
-            }),
-          }}
-          options={priceOptions}
-        ></Select>
+    <>
+      {loading ? (
+        <Skeleton count={1} height={600} />
+      ) : (
+        <div className='bg-white rounded-lg shadow-md mb-auto text-gray-700 p-5'>
+          <div className='text-lg font-bold mb-3'>Filters</div>
+          <hr />
+          <div>
+            <div className='mt-4 font-semibold'>Airlines</div>
+            <Select
+              placeholder='Select airline'
+              className='mt-2'
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  border: 0,
+                  boxShadow: 'none',
+                  borderColor: 'none',
+                }),
+              }}
+              options={options}
+            ></Select>
+            <hr />
+            <div className='mt-4 font-semibold'>Price</div>
+            <Select
+              className='mt-2'
+              isSearchable={false}
+              styles={{
+                control: (baseStyles, state) => ({
+                  ...baseStyles,
+                  border: 0,
+                  boxShadow: 'none',
+                  borderColor: 'none',
+                }),
+              }}
+              options={priceOptions}
+            ></Select>
 
-        <hr />
-        <div className='mt-4 font-semibold'>Stops</div>
-        <div className='flex flex-col gap-1 mt-3.5 mb-3'>
-          <div className='flex gap-2'>
-            <input type='checkbox' />
-            <label className=''>Direct</label>
-          </div>
-          <div className='flex gap-2'>
-            <input type='checkbox' />
-            <label className=''>1 Stop</label>
-          </div>
-          <div className='flex gap-2'>
-            <input type='checkbox' />
-            <label className=''>2+ Stops</label>
+            <hr />
+            <div className='mt-4 font-semibold'>Stops</div>
+            <div className='flex flex-col gap-1 mt-3.5 mb-3'>
+              <div className='flex gap-2'>
+                <input type='checkbox' />
+                <label className=''>Direct</label>
+              </div>
+              <div className='flex gap-2'>
+                <input type='checkbox' />
+                <label className=''>1 Stop</label>
+              </div>
+              <div className='flex gap-2'>
+                <input type='checkbox' />
+                <label className=''>2+ Stops</label>
+              </div>
+            </div>
+            <hr />
+            <div className='mt-4 font-semibold'>Ticket Type</div>
+            <div className='flex flex-col gap-1 mt-3.5 mb-3'>
+              <div className='flex gap-2'>
+                <input type='checkbox' />
+                <label className=''>One-way</label>
+              </div>
+              <div className='flex gap-2'>
+                <input type='checkbox' />
+                <label className=''>Return</label>
+              </div>
+            </div>
+            <hr />
+            <div className='mt-4 font-semibold'>Cabin Class</div>
+            <div className='flex flex-col gap-1 mt-3.5 mb-3'>
+              <div className='flex gap-2'>
+                <input type='checkbox' />
+                <label className=''>Basic</label>
+              </div>
+              <div className='flex gap-2'>
+                <input type='checkbox' />
+                <label className=''>Economy</label>
+              </div>
+              <div className='flex gap-2'>
+                <input type='checkbox' />
+                <label className=''>Business</label>
+              </div>
+            </div>
+            <hr />
+            <div className='mt-4 font-semibold'>Duration</div>
+            <input type='range' id='duration' className='w-full' />
+            <label htmlFor='duration'>5h 30m</label>
           </div>
         </div>
-        <hr />
-        <div className='mt-4 font-semibold'>Ticket Type</div>
-        <div className='flex flex-col gap-1 mt-3.5 mb-3'>
-          <div className='flex gap-2'>
-            <input type='checkbox' />
-            <label className=''>One-way</label>
-          </div>
-          <div className='flex gap-2'>
-            <input type='checkbox' />
-            <label className=''>Return</label>
-          </div>
-        </div>
-        <hr />
-        <div className='mt-4 font-semibold'>Cabin Class</div>
-        <div className='flex flex-col gap-1 mt-3.5 mb-3'>
-          <div className='flex gap-2'>
-            <input type='checkbox' />
-            <label className=''>Basic</label>
-          </div>
-          <div className='flex gap-2'>
-            <input type='checkbox' />
-            <label className=''>Economy</label>
-          </div>
-          <div className='flex gap-2'>
-            <input type='checkbox' />
-            <label className=''>Business</label>
-          </div>
-        </div>
-        <hr />
-        <div className='mt-4 font-semibold'>Duration</div>
-        <input type='range' id='duration' className='w-full' />
-        <label htmlFor='duration'>5h 30m</label>
-      </div>
-    </div>
+      )}
+    </>
   );
 };
 
