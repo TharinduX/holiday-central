@@ -22,7 +22,7 @@ const FlightCard = () => {
               <div className='text-sm'>CMB</div>
             </div>
             <div className='flex flex-col items-center justify-center text-gray-600 w-full'>
-              <hr class='w-full h-1 bg-gray-200 border-0 rounded dark:bg-gray-500' />
+              <hr className='w-full h-1 bg-gray-200 border-0 rounded dark:bg-gray-500' />
               <div className='text-sm'>Direct</div>
             </div>
             <div className='flex flex-col justify-center items-center text-gray-600'>

@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Select from 'react-select';
+import useFetch from '../../hooks/useFetch';
 
 const FilterSiderbar = () => {
   const [airlines, setAirlines] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/airlines`)
+    fetch('/api/airlines')
       .then((response) => response.json())
       .then((data) => setAirlines(data))
       .catch((err) => console.log(err));
@@ -70,6 +71,34 @@ const FilterSiderbar = () => {
           <div className='flex gap-2'>
             <input type='checkbox' />
             <label className=''>2+ Stops</label>
+          </div>
+        </div>
+        <hr />
+        <div className='mt-4 font-semibold'>Ticket Type</div>
+        <div className='flex flex-col gap-1 mt-3.5 mb-3'>
+          <div className='flex gap-2'>
+            <input type='checkbox' />
+            <label className=''>One-way</label>
+          </div>
+          <div className='flex gap-2'>
+            <input type='checkbox' />
+            <label className=''>Return</label>
+          </div>
+        </div>
+        <hr />
+        <div className='mt-4 font-semibold'>Cabin Class</div>
+        <div className='flex flex-col gap-1 mt-3.5 mb-3'>
+          <div className='flex gap-2'>
+            <input type='checkbox' />
+            <label className=''>Basic</label>
+          </div>
+          <div className='flex gap-2'>
+            <input type='checkbox' />
+            <label className=''>Economy</label>
+          </div>
+          <div className='flex gap-2'>
+            <input type='checkbox' />
+            <label className=''>Business</label>
           </div>
         </div>
         <hr />

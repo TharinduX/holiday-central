@@ -1,10 +1,17 @@
 import mongoose from 'mongoose';
-import airlineSchema from './Airline.js';
 
 const flightSchema = new mongoose.Schema(
   {
-    departure_destination: { type: String, required: true },
-    arrival_destination: { type: String, required: true },
+    departure_destination: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Airport',
+      required: true,
+    },
+    arrival_destination: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Airport',
+      required: true,
+    },
     departure_date: { type: Date, required: true },
     arrival_date: { type: Date, required: true },
     departure_time: { type: Date, required: true },
@@ -13,7 +20,11 @@ const flightSchema = new mongoose.Schema(
     transit_time: { type: Number },
     isReturn: { type: Boolean, required: true },
     cabin_class: { type: String, required: true },
-    airline: airlineSchema.schema,
+    airline: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Airline',
+      required: true,
+    },
     price: { type: Number, required: true },
     duration: { type: Number, required: true },
   },
