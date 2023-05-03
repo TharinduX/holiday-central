@@ -23,8 +23,6 @@ const Search = () => {
     },
   ]);
 
-  console.log(selectedOption);
-
   const [airports, setAirports] = useState([]);
 
   useEffect(() => {
@@ -46,12 +44,11 @@ const Search = () => {
           <div className='search-item ml-2 flex gap-2 items-center  w-full '>
             <MdLocationOn className='search-icon' />
             <Select
-              defaultValue={selectedOption}
               onChange={setSelectedOption}
               placeholder='Where from?'
               options={options}
+              classNamePrefix='slect-airport'
               className='w-full'
-              classNamePrefix='customSelect'
               styles={{
                 control: (baseStyles, state) => ({
                   ...baseStyles,
@@ -65,10 +62,10 @@ const Search = () => {
           <div className='search-item ml-2 flex gap-2 items-center  w-full'>
             <MdLocationOn className='search-icon' />
             <Select
-              defaultValue={selectedOption}
               onChange={setSelectedOption}
               placeholder='Where to?'
               options={options}
+              classNamePrefix='slect-airport'
               className='w-full'
               styles={{
                 control: (baseStyles, state) => ({

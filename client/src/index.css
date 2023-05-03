@@ -41,3 +41,12 @@ a.active.nav-active {
   height: 20px;
   cursor: pointer;
 }
+
+.slect-airport__option.slect-airport__option--is-selected {
+  background-color: white;
+  color: #000000;
+}
+.slect-airport__option:hover {
+  background-color: #023e8a;
+  color: #fff;
+}

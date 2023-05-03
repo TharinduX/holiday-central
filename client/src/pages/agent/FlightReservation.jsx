@@ -16,6 +16,9 @@ const FlightReservation = () => {
           <FlightCard />
           <FlightCard />
           <FlightCard />
+          <FlightCard />
+          <FlightCard />
+          <FlightCard />
         </div>
         <div className='bg-white rounded-lg shadow-md mb-auto text-gray-700 p-5'>
           <FilterSiderbar />
