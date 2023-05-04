@@ -7,12 +7,14 @@ import { Link } from 'react-router-dom';
 const FlightCard = (flight) => {
   const [loading, setLoading] = useState(true);
 
+  //timeout for loading skeleton
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   });
 
+  //convert minutes to hours and minutes
   function convertMinutesToHrsMins(minutes) {
     if (minutes < 60) {
       return `${minutes}m`;

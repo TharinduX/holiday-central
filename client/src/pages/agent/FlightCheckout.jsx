@@ -49,7 +49,7 @@ const FlightCheckout = () => {
       let resJson = await res.json();
       if (res.status === 201) {
         // Show success message to the user
-        alert('User created successfully');
+        alert('Booking recorded successfully');
 
         // Navigate to the homepage
         window.location.href = '/';

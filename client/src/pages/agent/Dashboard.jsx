@@ -4,7 +4,7 @@ import useFetch from '../../hooks/useFetch';
 const Dashboard = () => {
   const { data, loading, error } = useFetch(`/api/booking`);
   return (
-    <div className='flex flex-col mt-2'>
+    <div className='flex flex-col mt-[-30px]'>
       {loading ? (
         'loading'
       ) : (

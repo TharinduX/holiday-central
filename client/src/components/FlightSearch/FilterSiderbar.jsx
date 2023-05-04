@@ -17,12 +17,14 @@ const FilterSiderbar = ({
   const [loading, setLoading] = useState(true);
   const [airlines, setAirlines] = useState([]);
 
+  //timeout for loading skeleton
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   });
 
+  // get airlines data for filter
   useEffect(() => {
     fetch('/api/airlines')
       .then((response) => response.json())
@@ -40,6 +42,7 @@ const FilterSiderbar = ({
     { value: 'desc', label: 'Price: high to low' },
   ];
 
+  //direct or transit filtering
   const handleFilterChange = (event) => {
     const filter = event.target.name;
     const checked = event.target.checked;
@@ -63,6 +66,7 @@ const FilterSiderbar = ({
     }
   };
 
+  //oneway or return filtering
   const handleTypeChange = (event) => {
     const filter = event.target.name;
     const checked = event.target.checked;
@@ -86,6 +90,7 @@ const FilterSiderbar = ({
     }
   };
 
+  //cabin class filtering
   const handleCabinChange = (event) => {
     const filter = event.target.name;
     const checked = event.target.checked;
@@ -121,14 +126,17 @@ const FilterSiderbar = ({
     }
   };
 
+  //duration min-max
   const min = 60;
   const max = 500;
 
+  //handling the range slider data
   const handleChange = (e) => {
-    console.log('setting level', e.target.value);
+    // console.log('setting level', e.target.value);
     setDuration(e.target.value);
   };
 
+  //formatting the duration
   const formatDuration = (duration) => {
     const hours = Math.floor(duration / 60);
     const minutes = duration % 60;

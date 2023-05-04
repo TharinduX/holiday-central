@@ -90,6 +90,7 @@ export const getFlight = async (req, res, next) => {
   }
 };
 
+//search flight without params
 export const searchFlights = async (req, res, next) => {
   try {
     const departureDate = req.query.departure_date;
