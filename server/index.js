@@ -5,6 +5,7 @@ import authRoutes from './routes/auth.js';
 import airlineRoutes from './routes/airlines.js';
 import flightRoutes from './routes/flights.js';
 import airportRoutes from './routes/airports.js';
+import bookingRoutes from './routes/bookings.js';
 import cookieParser from 'cookie-parser';
 
 const app = express();
@@ -25,6 +26,9 @@ app.use('/api/airports', airportRoutes);
 
 //Flight Routes
 app.use('/api/flights', flightRoutes);
+
+//Booking Routes
+app.use('/api/booking', bookingRoutes);
 
 app.use((err, req, res, next) => {
   const errorStatus = err.status || 500;

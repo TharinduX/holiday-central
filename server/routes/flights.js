@@ -15,6 +15,6 @@ const router = express.Router();
 router.post('/', addFlight);
 router.get('/', getFlights);
 router.get('/search', searchFlights);
-router.get('/find/:id', getFlight);
+router.get('/:id', getFlight);
 
 export default router;

@@ -57,8 +57,6 @@ const FlightReservation = () => {
             .then((response) => response.json())
             .then((data) => setFlights(data))
             .catch((err) => console.log(err));
-
-          console.log(url);
         } catch (err) {
           console.log(stops);
         }

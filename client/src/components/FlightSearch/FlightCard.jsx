@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 const FlightCard = (flight) => {
   const [loading, setLoading] = useState(true);
@@ -89,9 +90,11 @@ const FlightCard = (flight) => {
                   {flight.flight.price} LKR
                 </div>
                 <div className='text-sm'>Tax included</div>
-                <button className='bg-secondary text-white px-10 py-1 rounded-md'>
-                  Select
-                </button>
+                <Link to={`/flight-checkout/${flight.flight._id}`}>
+                  <button className='bg-secondary text-white px-10 py-1 rounded-md'>
+                    Select
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

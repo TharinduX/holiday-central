@@ -80,7 +80,10 @@ export const getFlights = async (req, res, next) => {
 
 export const getFlight = async (req, res, next) => {
   try {
-    const flights = await Flight.findById(req.params.id);
+    const flights = await Flight.findById(req.params.id)
+      .populate('airline')
+      .populate('departure_destination')
+      .populate('arrival_destination');
     res.status(200).json(flights);
   } catch (err) {
     next(err);
