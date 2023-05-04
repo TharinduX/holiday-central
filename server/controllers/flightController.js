@@ -1,3 +1,4 @@
+import { query } from 'express';
 import Flight from '../models/Flight.js';
 
 export const addFlight = async (req, res, next) => {
@@ -10,8 +11,61 @@ export const addFlight = async (req, res, next) => {
 };
 
 export const getFlights = async (req, res, next) => {
+  const query = {};
+  const sort = {};
+
+  if (req.query.sortBy) {
+    const str = req.query.sortBy.split(':');
+    sort[str[0]] = str[1] === 'desc' ? -1 : 1;
+  }
+
+  if (req.query.airline && req.query.airline !== 'all') {
+    query.airline = req.query.airline;
+  }
+
+  if (req.query.from) {
+    query.departure_destination = req.query.from;
+  }
+
+  if (req.query.to) {
+    query.arrival_destination = req.query.to;
+  }
+
+  if (req.query.departure_date) {
+    query.departure_date = { $gte: req.query.departure_date };
+  }
+
+  if (req.query.arrival_date) {
+    query.arrival_date = { $lte: req.query.arrival_date };
+  }
+
+  if (req.query.pax) {
+    query.available_seats = { $gte: req.query.pax };
+  }
+
+  if (req.query.isDirect && req.query.isDirect !== 'all') {
+    query.isDirect = req.query.isDirect;
+  }
+
+  if (req.query.isReturn && req.query.isReturn !== 'all') {
+    query.isReturn = req.query.isReturn;
+  }
+
+  if (req.query.class) {
+    query.cabin_class_avaialble = {
+      $in: req.query.class.toLowerCase().split(','),
+    };
+  }
+
+  if (req.query.duration) {
+    query.duration = { $lte: req.query.duration };
+  }
+
   try {
-    const flights = await Flight.find()
+    const flights = await Flight.find(query)
+      .limit(req.query.limit || 0)
+      .skip(req.query.skip || 0)
+      .sort(req.query.sort || sort)
       .populate('airline')
       .populate('departure_destination')
       .populate('arrival_destination');

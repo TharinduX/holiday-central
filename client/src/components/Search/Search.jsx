@@ -13,39 +13,22 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import useFetch from '../../hooks/useFetch';
 
-const Search = ({ setFlights }) => {
-  const [selectedOption, setSelectedOption] = useState(null);
-
-  const [openDate, setOpenDate] = useState(false);
-  const [dates, setDates] = useState([
-    {
-      startDate: new Date(),
-      endDate: new Date(),
-      key: 'selection',
-    },
-  ]);
-
-  const [airports, setAirports] = useState([]);
-
-  useEffect(() => {
-    fetch('/api/airports')
-      .then((response) => response.json())
-      .then((data) => setAirports(data))
-      .catch((err) => console.log(err));
-  }, []);
-
-  const options = airports.map((airport) => ({
-    value: airport._id,
-    label: airport.name + ' (' + airport.code + ')',
-  }));
-
-  const [from, setFrom] = useState('');
-  const [to, setTo] = useState('');
-  const [passengers, setPassengers] = useState(1);
-
-  const departure_date = format(dates[0].startDate, 'yyyy-MM-dd');
-  const arrival_date = format(dates[0].endDate, 'yyyy-MM-dd');
-
+const Search = ({
+  setFlights,
+  setFrom,
+  setTo,
+  setDates,
+  dates,
+  setPassengers,
+  setAirports,
+  passengers,
+  airports,
+  options,
+  from,
+  to,
+  departure_date,
+  arrival_date,
+}) => {
   const handleClick = async () => {
     if (!from || !to || !departure_date || !arrival_date || !passengers)
       return alert('Please fill all fields');
@@ -147,6 +130,7 @@ const Search = ({ setFlights }) => {
               defaultValue={1}
               min={1}
               max={9}
+              onChange={setPassengers}
               className='w-20 h-10 '
             />
           </div>
