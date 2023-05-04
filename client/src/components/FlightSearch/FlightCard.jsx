@@ -51,7 +51,6 @@ const FlightCard = (flight) => {
                 </div>
                 <div className='flex flex-col justify-center items-center text-gray-600'>
                   <div className='font-bold'>
-                    {' '}
                     {format(new Date(flight.flight.departure_time), 'HH:mm')}
                   </div>
                   <div className='text-xs'>
@@ -76,7 +75,7 @@ const FlightCard = (flight) => {
                 </div>
                 <div className='flex flex-col justify-center items-center text-gray-400 w-full'>
                   <div className='text-md'>
-                    {convertMinutesToHrsMins(flight.flight.duration)}
+                    {convertMinutesToHrsMins(flight.flight.total_duration)}
                   </div>
                 </div>
               </div>

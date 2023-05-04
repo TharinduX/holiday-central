@@ -26,6 +26,8 @@ const FlightReservation = () => {
   const [priceSelect, setPriceSelect] = useState('asc');
   const [isDirect, setisDirect] = useState('all');
   const [isReturn, setIsReturn] = useState('all');
+  const [cabinClass, setcabinClass] = useState([]);
+  const [duration, setDuration] = useState([]);
 
   useEffect(() => {
     fetch('/api/airports')
@@ -49,7 +51,7 @@ const FlightReservation = () => {
             airlineQuery.value || 'all'
           }&sortBy=price:${
             priceSelect.value || 'asc'
-          }&isDirect=${isDirect}&isReturn=${isReturn}`;
+          }&isDirect=${isDirect}&isReturn=${isReturn}&class=${cabinClass}&duration=${duration}`;
 
           const res = await fetch(url)
             .then((response) => response.json())
@@ -73,6 +75,8 @@ const FlightReservation = () => {
     priceSelect,
     isDirect,
     isReturn,
+    cabinClass,
+    duration,
   ]);
 
   return (
@@ -111,6 +115,10 @@ const FlightReservation = () => {
           setisDirect={setisDirect}
           isDirect={isDirect}
           setIsReturn={setIsReturn}
+          setcabinClass={setcabinClass}
+          flights={flights}
+          setDuration={setDuration}
+          duration={duration}
         />
       </div>
     </div>

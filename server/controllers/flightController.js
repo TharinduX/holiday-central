@@ -3,7 +3,10 @@ import Flight from '../models/Flight.js';
 
 export const addFlight = async (req, res, next) => {
   try {
-    const flight = await Flight.create(req.body);
+    const flight = await Flight.create({
+      total_duration: req.body.duration + req.body.transit_time,
+      ...req.body,
+    });
     res.status(200).json(flight);
   } catch (err) {
     next(err);
@@ -51,14 +54,14 @@ export const getFlights = async (req, res, next) => {
     query.isReturn = req.query.isReturn;
   }
 
-  if (req.query.class) {
+  if (req.query.class && req.query.class !== 'all') {
     query.cabin_class_avaialble = {
       $in: req.query.class.toLowerCase().split(','),
     };
   }
 
   if (req.query.duration) {
-    query.duration = { $lte: req.query.duration };
+    query.total_duration = { $lte: req.query.duration };
   }
 
   try {

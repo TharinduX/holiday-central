@@ -9,6 +9,10 @@ const FilterSiderbar = ({
   setPriceSelect,
   setisDirect,
   setIsReturn,
+  setcabinClass,
+  flights,
+  setDuration,
+  duration,
 }) => {
   const [loading, setLoading] = useState(true);
   const [airlines, setAirlines] = useState([]);
@@ -80,6 +84,55 @@ const FilterSiderbar = ({
     } else {
       setIsReturn('all');
     }
+  };
+
+  const handleCabinChange = (event) => {
+    const filter = event.target.name;
+    const checked = event.target.checked;
+    const checkedBasic =
+      filter === 'basic'
+        ? checked
+        : document.querySelector('input[name="basic"]').checked;
+    const checkedEconomy =
+      filter === 'economy'
+        ? checked
+        : document.querySelector('input[name="economy"]').checked;
+    const checkedBusiness =
+      filter === 'business'
+        ? checked
+        : document.querySelector('input[name="business"]').checked;
+
+    if (checkedBasic || checkedEconomy || checkedBusiness) {
+      const selectedCabin = [];
+
+      if (checkedBasic) {
+        selectedCabin.push('basic');
+      }
+      if (checkedEconomy) {
+        selectedCabin.push('economy');
+      }
+      if (checkedBusiness) {
+        selectedCabin.push('business');
+      }
+
+      setcabinClass(selectedCabin);
+    } else {
+      setcabinClass('all');
+    }
+  };
+
+  const min = 60;
+  const max = 500;
+
+  const handleChange = (e) => {
+    console.log('setting level', e.target.value);
+    setDuration(e.target.value);
+  };
+
+  const formatDuration = (duration) => {
+    const hours = Math.floor(duration / 60);
+    const minutes = duration % 60;
+    return `${hours}h ${minutes}m`;
   };
 
   return (
@@ -167,22 +220,47 @@ const FilterSiderbar = ({
             <div className='mt-4 font-semibold'>Cabin Class</div>
             <div className='flex flex-col gap-1 mt-3.5 mb-3'>
               <div className='flex gap-2'>
-                <input type='checkbox' />
+                <input
+                  type='checkbox'
+                  name='basic'
+                  onChange={handleCabinChange}
+                />
                 <label className=''>Basic</label>
               </div>
               <div className='flex gap-2'>
-                <input type='checkbox' />
+                <input
+                  type='checkbox'
+                  name='economy'
+                  onChange={handleCabinChange}
+                />
                 <label className=''>Economy</label>
               </div>
               <div className='flex gap-2'>
-                <input type='checkbox' />
+                <input
+                  type='checkbox'
+                  name='business'
+                  onChange={handleCabinChange}
+                />
                 <label className=''>Business</label>
               </div>
             </div>
             <hr />
-            <div className='mt-4 font-semibold'>Duration</div>
-            <input type='range' id='duration' className='w-full' />
-            <label htmlFor='duration'>5h 30m</label>
+            {min && max && (
+              <div className='mt-4 font-semibold'>
+                Duration
+                <input
+                  type='range'
+                  id='duration'
+                  className='w-full'
+                  min={min}
+                  max={max}
+                  defaultValue={duration}
+                  onChange={(e) => console.log(e.target.value)}
+                  onMouseUp={handleChange}
+                />
+                <label htmlFor='duration'>{formatDuration(duration)}</label>
+              </div>
+            )}
           </div>
         </div>
       )}
