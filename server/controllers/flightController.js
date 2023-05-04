@@ -80,7 +80,10 @@ export const getFlights = async (req, res, next) => {
 
 export const getFlight = async (req, res, next) => {
   try {
-    const flights = await Flight.findById(req.params.id);
+    const flights = await Flight.findById(req.params.id)
+    .populate('airline')
+    .populate('departure_destination')
+    .populate('arrival_destination');
     res.status(200).json(flights);
   } catch (err) {
     next(err);
@@ -106,6 +109,36 @@ export const searchFlights = async (req, res, next) => {
       .populate('arrival_destination');
     res.status(200).json(flights);
   } catch (err) {
+    next(err);
+  }
+};
+
+export  const deleteFlight = async (req, res, next) => {
+  try {
+    const flightId = req.params.id;
+    const flight = await Flight.findByIdAndDelete(flightId);
+
+    if (!flight) {
+      return res.status(404).json({ message: 'Flight not found' });
+    }
+
+    res.status(200).json({ message: 'Flight deleted', data: flight });
+  } catch (err) {
+    next(err);
+  }
+};
+
+export const updateFlight = async (req, res, next) => {
+  try {
+    console.log(req);
+    const { id } = req.params;
+    const flight = await Flight.findByIdAndUpdate(id, req.body,{ new: true });
+    if (!flight) {
+      return res.status(404).json({ message: 'Flight not found' });
+    }
+    res.status(200).json(flight);
+  } catch (err) {
+    console.log(err);
     next(err);
   }
 };
