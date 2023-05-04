@@ -47,12 +47,12 @@ const FlightCheckout = () => {
       });
 
       let resJson = await res.json();
-      if (res.status === 200) {
-        setFirstName('');
-        setLastName('');
-        setEmail('');
-        setPhoneNo('');
-        setMessage('User created successfully');
+      if (res.status === 201) {
+        // Show success message to the user
+        alert('User created successfully');
+
+        // Navigate to the homepage
+        window.location.href = '/';
       } else {
         setMessage('Some error occured');
       }
