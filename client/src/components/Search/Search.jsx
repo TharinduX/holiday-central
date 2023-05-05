@@ -13,6 +13,7 @@ import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import useFetch from '../../hooks/useFetch';
 
+//old handle click - not working
 const Search = ({
   setFlights,
   setFrom,
@@ -44,12 +45,12 @@ const Search = ({
   const dropdownRef = useRef(null);
   const dropdownRef2 = useRef(null);
 
+  //handling the date range close
   const handleOutsideClick = (event) => {
     if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
       setIsOpen(false);
     }
   };
-
   useEffect(() => {
     document.addEventListener('click', handleOutsideClick, true);
     return () => {

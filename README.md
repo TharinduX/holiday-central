@@ -1,5 +1,7 @@
 # HolidayCentral Web-Based Solution
 
+[Demo](https://user-images.githubusercontent.com/35922615/236334767-1c41fc21-169e-4958-9506-ab08aaedb962.webm)
+
 ## Overview
 
 HolidayCentral is a travel company that provides flight ticket booking, hotel bookings, and holiday packages to both local and foreign travelers. This web-based solution is used by travel agents who represent HolidayCentral, allowing them to search and book products and obtain payments on behalf of their clients. The solution also includes back-office functionality for managing searchable products and an admin panel for managing travel agents and other administrative tasks.

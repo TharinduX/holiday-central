@@ -2,16 +2,19 @@ import React, { useEffect, useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { format } from 'date-fns';
+import { Link } from 'react-router-dom';
 
 const FlightCard = (flight) => {
   const [loading, setLoading] = useState(true);
 
+  //timeout for loading skeleton
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 1000);
   });
 
+  //convert minutes to hours and minutes
   function convertMinutesToHrsMins(minutes) {
     if (minutes < 60) {
       return `${minutes}m`;
@@ -89,9 +92,11 @@ const FlightCard = (flight) => {
                   {flight.flight.price} LKR
                 </div>
                 <div className='text-sm'>Tax included</div>
-                <button className='bg-secondary text-white px-10 py-1 rounded-md'>
-                  Select
-                </button>
+                <Link to={`/flight-checkout/${flight.flight._id}`}>
+                  <button className='bg-secondary text-white px-10 py-1 rounded-md'>
+                    Select
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

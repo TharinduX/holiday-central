@@ -19,7 +19,7 @@ function App() {
           <Route path='/packages' element={<Packages />} />
           <Route path='*' element={<NotFound />} />
         </Route>
-        <Route path='/flight-checkout' element={<FlightCheckout />} />
+        <Route path='/flight-checkout/:id' element={<FlightCheckout />} />
       </Routes>
     </BrowserRouter>
   );

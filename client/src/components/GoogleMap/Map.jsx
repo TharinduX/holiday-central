@@ -12,17 +12,17 @@ const containerStyle = {
   height: '300px',
 };
 
-const loactions = [
-  { id: 1, lat: 6.927079, lng: 79.861244 },
-  { id: 2, lat: 19.07609, lng: 72.877426 },
-];
-
 const options = {
   strokeColor: '#c20000',
   editable: false,
 };
 
-const Map = () => {
+const Map = ({ d_lat, d_lng, a_lat, a_lng }) => {
+  const loactions = [
+    { id: 1, lat: d_lat, lng: d_lng },
+    { id: 2, lat: a_lat, lng: a_lng },
+  ];
+
   const { isLoaded } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,

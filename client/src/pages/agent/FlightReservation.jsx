@@ -14,6 +14,7 @@ const FlightReservation = () => {
     },
   ]);
 
+  // get data for query
   const [flights, setFlights] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
   const [from, setFrom] = useState('');
@@ -29,6 +30,7 @@ const FlightReservation = () => {
   const [cabinClass, setcabinClass] = useState([]);
   const [duration, setDuration] = useState([]);
 
+  // get airports data for filter
   useEffect(() => {
     fetch('/api/airports')
       .then((response) => response.json())
@@ -41,6 +43,7 @@ const FlightReservation = () => {
     label: airport.name + ' (' + airport.code + ')',
   }));
 
+  //flights filtering
   useEffect(() => {
     if (from && to) {
       const getFlightResults = async () => {
@@ -57,8 +60,6 @@ const FlightReservation = () => {
             .then((response) => response.json())
             .then((data) => setFlights(data))
             .catch((err) => console.log(err));
-
-          console.log(url);
         } catch (err) {
           console.log(stops);
         }
