@@ -75,4 +75,4 @@ Travel agents can also filter the search results based on the following criteria
 
 ## Back-Office Functionality
 
-Back-office staff can update the application with flight, hotel, and package details to ensure that products are available for search and booking. This is achieved via a bulk upload function from a CSV file. Back-office staff can also update and delete product details.
+Back-office staff can update the application with flight, hotel, and package details to ensure that products are available for search and booking. This is achieved via a bulk upload function from a CSV file. Back-office staff can also update and delete product details

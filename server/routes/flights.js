@@ -5,6 +5,8 @@ import {
   getFlights,
   getFlight,
   searchFlights,
+  deleteFlight,
+  updateFlight
 } from '../controllers/flightController.js';
 const router = express.Router();
 
@@ -15,6 +17,8 @@ const router = express.Router();
 router.post('/', addFlight);
 router.get('/', getFlights);
 router.get('/search', searchFlights);
-router.get('/:id', getFlight);
+router.get('/find/:id', getFlight);
+router.delete('/:id', deleteFlight);
+router.put('/:id', updateFlight);
 
 export default router;
