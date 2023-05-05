@@ -114,10 +114,10 @@ const Dashboard = () => {
                         {item.seat_preference}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.flight_booking_id.departure_destination.city}
+                        {item.flight_booking_id?.departure_destination?.city}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.flight_booking_id.arrival_destination.city}
+                        {item.flight_booking_id?.arrival_destination?.city}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
                         {item.passengers}
@@ -129,7 +129,7 @@ const Dashboard = () => {
                         {item.booking_date.substring(0, 10)}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.flight_booking_id.flight_number}
+                        {item.flight_booking_id?.flight_number}
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap'>
                         <button className='text-red-600 hover:text-red-900'>
