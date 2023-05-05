@@ -21,7 +21,7 @@ const FlightCheckout = () => {
   const [phoneNo, setPhoneNo] = useState('');
   const [message, setMessage] = useState('');
 
-  const { data, loading, error } = useFetch(`/api/flights/${id}`);
+  const { data, loading, error } = useFetch(`/api/flights/find/${id}`);
 
   let handleSubmit = async (e) => {
     e.preventDefault();
