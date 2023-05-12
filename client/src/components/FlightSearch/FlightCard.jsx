@@ -11,7 +11,7 @@ const FlightCard = (flight) => {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 1000);
+    }, 500);
   });
 
   //convert minutes to hours and minutes
@@ -32,8 +32,8 @@ const FlightCard = (flight) => {
         <Skeleton count={1} height={130} />
       ) : (
         <div className=' bg-white rounded-lg shadow-md px-7 py-5 mb-3'>
-          <div className='grid grid-cols-4'>
-            <div className='col-span-3'>
+          <div className='grid grid-cols-5'>
+            <div className='col-span-4'>
               <div className='flex gap-3 items-center'>
                 <div className='flex flex-col items-center text-xs border rounded-lg p-0.5 w-[10%] text-secondary border-secondary'>
                   {flight.flight.isReturn ? 'Return' : 'One Way'}
@@ -76,15 +76,24 @@ const FlightCard = (flight) => {
                     {flight.flight.arrival_destination.code}
                   </div>
                 </div>
-                <div className='flex flex-col justify-center items-center text-gray-400 w-full'>
+                <div className='flex flex-col justify-center items-center text-gray-400 w-full gap-x-3.5'>
                   <div className='text-md'>
                     {convertMinutesToHrsMins(flight.flight.total_duration)}
                   </div>
+                  {flight.flight.available_seats < 10 ? (
+                    <div className='text-sm font-bold text-red-500'>
+                      {flight.flight.available_seats} Seats Left
+                    </div>
+                  ) : (
+                    <div className='text-sm font-bold text-green-500'>
+                      {flight.flight.available_seats} Seats Left
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
-            <div className='col-span-1'>
-              <div className='flex flex-col items-end'>
+            <div className='col-span-1 '>
+              <div className='flex flex-col items-end '>
                 <div className='text-md text-gray-300'>
                   {flight.flight.flight_number}
                 </div>

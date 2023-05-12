@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState, useContext } from 'react';
 import {
   MdOutlineFlight,
   MdOutlineLocalHotel,
@@ -7,8 +8,15 @@ import {
 } from 'react-icons/md';
 
 import { Link, NavLink, Routes, Route } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
 
 const NavBar = () => {
+  const { agent, loading, error, dispatch } = useContext(AuthContext);
+
+  const handleLogout = async (e) => {
+    e.preventDefault();
+    dispatch({ type: 'LOGOUT' });
+  };
   return (
     <nav className='header bg-secondary px-12 pt-12 pb-20'>
       <div className='main-navbar flex justify-between items-center'>
@@ -18,10 +26,24 @@ const NavBar = () => {
           </h1>
         </div>
         <div className='nav-items flex gap-8 text-textWhite items-center'>
-          <li>LKR</li>
-          <button className='bg-white text-secondary py-2 px-4 rounded'>
-            Login
-          </button>
+          {agent ? (
+            <>
+              <div className='flex flex-col items-end'>
+                <div className='capitalize'>{agent.username}</div>
+                <div className='capitalize text-primary text-xs'>
+                  {agent.branch}
+                </div>
+              </div>
+              <button
+                onClick={handleLogout}
+                className='bg-white text-secondary py-2 px-4 rounded'
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            ''
+          )}
         </div>
       </div>
       <div className='navbar flex items-center mt-7 gap-3'>

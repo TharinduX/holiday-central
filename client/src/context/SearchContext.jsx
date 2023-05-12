@@ -5,7 +5,7 @@ const INITIAL_STATE = {
   to: undefined,
   departure_date: undefined,
   arrival_date: undefined,
-  pax: undefined,
+  passengers: undefined,
 };
 
 export const SearchContext = createContext(INITIAL_STATE);
@@ -31,7 +31,7 @@ export const SearchContextProvider = ({ children }) => {
         to: state.to,
         departure_date: state.departure_date,
         arrival_date: state.arrival_date,
-        pax: state.pax,
+        passengers: state.passengers,
         dispatch,
       }}
     >

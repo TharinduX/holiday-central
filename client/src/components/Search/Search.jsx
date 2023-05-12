@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import Select from 'react-select';
 import {
   MdLocationOn,
@@ -12,8 +12,8 @@ import NumericInput from 'react-numeric-input';
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import useFetch from '../../hooks/useFetch';
+import { SearchContext } from '../../context/SearchContext';
 
-//old handle click - not working
 const Search = ({
   setFlights,
   setFrom,
@@ -29,7 +29,10 @@ const Search = ({
   to,
   departure_date,
   arrival_date,
+  setClicked,
 }) => {
+  const { dispatch } = useContext(SearchContext);
+
   const handleClick = async () => {
     if (!from || !to || !departure_date || !arrival_date || !passengers)
       return alert('Please fill all fields');
@@ -39,6 +42,11 @@ const Search = ({
       .then((response) => response.json())
       .then((data) => setFlights(data))
       .catch((err) => console.log(err));
+    setClicked(true);
+    dispatch({
+      type: 'NEW_SEARCH',
+      payload: { from, to, departure_date, arrival_date, passengers },
+    });
   };
 
   const [isOpen, setIsOpen] = useState(false);

@@ -26,14 +26,14 @@ export const agentRegister = async (req, res, next) => {
 
 export const agentLogin = async (req, res, next) => {
   try {
-    const agent = await Agent.findOne({ username: req.body.username });
+    const agent = await Agent.findOne({ email: req.body.email });
     if (!agent) return next(createError(404, 'Agent not found'));
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
       agent.password
     );
     if (!isPasswordCorrect)
-      return next(createError(400, 'Username or password is incorrect'));
+      return next(createError(400, 'Email or password is incorrect'));
     const token = jwt.sign({ id: agent._id }, process.env.JWT_SECRET);
     const { password, ...others } = agent._doc;
 

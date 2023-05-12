@@ -1,12 +1,12 @@
 import express from 'express';
-import { verifyToken } from '../utils/verifyToken.js';
+import { verifyToken, verifyAgent } from '../utils/verifyToken.js';
 import {
   addFlight,
   getFlights,
   getFlight,
   searchFlights,
   deleteFlight,
-  updateFlight
+  updateFlight,
 } from '../controllers/flightController.js';
 const router = express.Router();
 
@@ -15,8 +15,8 @@ const router = express.Router();
 // });
 
 router.post('/', addFlight);
-router.get('/', getFlights);
-router.get('/search', searchFlights);
+router.get('/', verifyAgent, getFlights);
+router.get('/search', verifyAgent, searchFlights);
 router.get('/find/:id', getFlight);
 router.delete('/:id', deleteFlight);
 router.put('/:id', updateFlight);

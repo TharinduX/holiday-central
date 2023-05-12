@@ -9,7 +9,7 @@ import {
 
 const containerStyle = {
   width: 'auto',
-  height: '300px',
+  height: '380px',
 };
 
 const options = {
@@ -28,7 +28,7 @@ const Map = ({ d_lat, d_lng, a_lat, a_lng }) => {
     googleMapsApiKey: import.meta.env.VITE_GOOGLE_MAPS_API_KEY,
   });
 
-  if (!isLoaded) return <div className='animate-spin'>Loading..</div>;
+  if (!isLoaded) return <div>Loading..</div>;
   return (
     <div className='w-full'>
       <GoogleMap

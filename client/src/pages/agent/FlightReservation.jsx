@@ -29,6 +29,7 @@ const FlightReservation = () => {
   const [isReturn, setIsReturn] = useState('all');
   const [cabinClass, setcabinClass] = useState([]);
   const [duration, setDuration] = useState([]);
+  const [clicked, setClicked] = useState(false);
 
   // get airports data for filter
   useEffect(() => {
@@ -45,7 +46,7 @@ const FlightReservation = () => {
 
   //flights filtering
   useEffect(() => {
-    if (from && to) {
+    if (from && to && clicked) {
       const getFlightResults = async () => {
         try {
           const url = `/api/flights?from=${from.value}&to=${
@@ -98,6 +99,7 @@ const FlightReservation = () => {
           to={to}
           departure_date={departure_date}
           arrival_date={arrival_date}
+          setClicked={setClicked}
         />
       </div>
       <div className='grid grid-cols-4 max-w-[1200px] w-full m-auto gap-3 mt-12 text-gray-400'>

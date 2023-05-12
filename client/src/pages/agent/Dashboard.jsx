@@ -1,12 +1,57 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import useFetch from '../../hooks/useFetch';
+import { Link, Navigate, redirect } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Dashboard = () => {
-  const { data, loading, error } = useFetch(`/api/booking`);
+  const [bookings, setBookings] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 500);
+  });
+
+  useEffect(() => {
+    async function fetchBookings() {
+      try {
+        setLoading(true);
+        const response = await axios.get('/api/booking');
+        setBookings(response.data);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+      }
+    }
+
+    fetchBookings();
+  }, []);
+
+  const handleDelete = async (id) => {
+    try {
+      await axios.delete(`/api/booking/${id}`);
+      setBookings((prevBookings) => {
+        const newBookings = prevBookings.filter(
+          (booking) => booking._id !== id
+        );
+        return newBookings;
+      });
+      toast.success('Item deleted successfully!', {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className='flex flex-col mt-[-30px]'>
       {loading ? (
-        'loading'
+        <Skeleton count={1} height={130} />
       ) : (
         <div className='overflow-x-auto sm:-my-2'>
           <div className='py-2 align-middle inline-block min-w-full sm:px-6'>
@@ -20,12 +65,7 @@ const Dashboard = () => {
                     >
                       First Name
                     </th>
-                    <th
-                      scope='col'
-                      className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
-                    >
-                      Last Name
-                    </th>
+
                     <th
                       scope='col'
                       className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
@@ -68,12 +108,7 @@ const Dashboard = () => {
                     >
                       Passengers
                     </th>
-                    <th
-                      scope='col'
-                      className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
-                    >
-                      Booking Type
-                    </th>
+
                     <th
                       scope='col'
                       className='px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider'
@@ -93,48 +128,55 @@ const Dashboard = () => {
                   </tr>
                 </thead>
                 <tbody className='bg-white divide-y divide-gray-200'>
-                  {data.map((item) => (
-                    <tr key={item._id}>
+                  {bookings.map((booking) => (
+                    <tr key={booking._id}>
                       <td className='px-6 py-4 whitespace-nowrap'>
-                        {item.c_first_name}
+                        {booking.c_first_name}
+                      </td>
+
+                      <td className='px-6  py-4 whitespace-nowrap'>
+                        {booking.c_email}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.c_last_name}
+                        {booking.c_phone}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.c_email}
+                        {booking.meal_preference}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.c_phone}
+                        {booking.seat_preference}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.meal_preference}
+                        {booking.flight_booking_id?.departure_destination?.city}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.seat_preference}
+                        {booking.flight_booking_id?.arrival_destination?.city}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.flight_booking_id?.departure_destination?.city}
+                        {booking.passengers}
+                      </td>
+
+                      <td className='px-6  py-4 whitespace-nowrap'>
+                        {booking.booking_date.substring(0, 10)}
                       </td>
                       <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.flight_booking_id?.arrival_destination?.city}
-                      </td>
-                      <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.passengers}
-                      </td>
-                      <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.booking_type}
-                      </td>
-                      <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.booking_date.substring(0, 10)}
-                      </td>
-                      <td className='px-6  py-4 whitespace-nowrap'>
-                        {item.flight_booking_id?.flight_number}
+                        {booking.flight_booking_id?.flight_number}
                       </td>
                       <td className='px-6 py-4 whitespace-nowrap'>
-                        <button className='text-red-600 hover:text-red-900'>
-                          Delete
-                        </button>
+                        <div className='flex gap-3'>
+                          <Link to={`/view-booking/${booking._id}`}>
+                            <button className=' text-primary hover:text-secondary'>
+                              View
+                            </button>
+                          </Link>
+
+                          <button
+                            className='bg-red-600 text-white hover:bg-red-900 px-2 py-1 rounded-md'
+                            onClick={() => handleDelete(booking._id)}
+                          >
+                            Delete
+                          </button>
+                        </div>
                       </td>
                     </tr>
                   ))}
